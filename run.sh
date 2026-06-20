@@ -31,10 +31,10 @@ LOCK_FILE="$REPO_ROOT/requirements.lock"
 mkdir -p "$LOG_DIR" "$RESULTS_DIR" "$OUT_DIR" "$RESULTS_DIR/baseline" "$RESULTS_DIR/trained" "$RESULTS_DIR/figures"
 
 # --- Model + benchmark defaults (overridable via flags / env) --------------
-MODEL="${MODEL:-Qwen/Qwen2.5-3B-Instruct}"        # fallback: Qwen/Qwen2.5-1.5B-Instruct
-DATASETS="${DATASETS:-gsm8k,strategyqa}"          # improve targets; MMLU = maintain
-SEEDS="${SEEDS:-0,1,2}"                            # multi-seed RL (high variance)
-STEPS="${STEPS:-1500}"                             # GRPO steps
+MODEL="${MODEL:-Qwen/Qwen2.5-1.5B-Instruct}"      # +5% headroom; 3B/7B = one-flag switch
+DATASETS="${DATASETS:-gsm8k,strategyqa,aqua}"     # improve targets; MMLU = maintain
+SEEDS="${SEEDS:-0,1,2}"                            # multi-seed eval (high variance)
+STEPS="${STEPS:-400}"                             # Dr.GRPO steps (24h recipe)
 SFT_STEPS="${SFT_STEPS:-500}"
 LOSS="${LOSS:-dr_grpo}"                            # dr_grpo (default) | grpo
 KL="${KL:-0.0}"                                    # KL off by default (Lavaee SLM finding)
